@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="day">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RonRob Luanti Mods | Complete Voxel World Mod Hub</title>
+  <meta name="description" content="Explore 84 open-source Minetest / Luanti voxel mods by ronrob-lu. Features AI & LLM autonomous NPCs, vehicles, aircraft, prehistoric dinosaurs, modern cities, and dynamic mechanics.">
+  <link rel="stylesheet" href="style.css">
+  <!-- Three.js for interactive 3D voxel diorama -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+
+  <!-- Background Animated Pixel Clouds & Celestial Body -->
+  <div class="sky-container">
+    <div class="pixel-clouds"></div>
+    <div class="pixel-celestial" id="celestialBody" title="Sun / Moon"></div>
+  </div>
+
+  <!-- Top Minetest HUD Navigation Bar -->
+  <header class="top-hud-bar">
+    <div class="grass-rim"></div>
+    <div class="hud-container">
+      <div class="hud-brand">
+        <div class="voxel-logo-cube"></div>
+        <div class="brand-text">
+          <h1>RONROB-LU // LUANTI MODS</h1>
+          <p>VOXEL WORLD MOD DIRECTORY &bull; MINETEST / LUANTI ENGINE</p>
+        </div>
+      </div>
+      <div class="hud-actions">
+        <button class="voxel-btn" id="audioToggleBtn" title="Toggle 8-bit sound effects">
+          <span id="audioIcon">🔊</span> SOUND: ON
+        </button>
+        <button class="voxel-btn" id="themeCycleBtn" title="Cycle sky time of day">
+          <span id="themeIcon">☀️</span> DAY
+        </button>
+        <a href="https://github.com/ronrob-lu" target="_blank" rel="noopener noreferrer" class="voxel-btn accent">
+          <span>🐙</span> GITHUB PROFILE
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Hero & 3D Voxel Showcase -->
+  <section class="hero-wrapper">
+    <div class="formspec-frame">
+      <div class="hero-layout">
+        <!-- Hero Details -->
+        <div class="hero-info">
+          <div class="badge-pill">Luanti / Minetest Mod Ecosystem</div>
+          <h2 class="hero-title">
+            Complete Voxel World <span>Engineering</span> & AI Mods
+          </h2>
+          <p class="hero-desc">
+            Discover a collection of <strong>84 mods</strong> created by <strong>ronrob-lu</strong> for the open-source Luanti (Minetest) voxel engine. From autonomous LLM-driven builders and airport navigation systems to prehistoric wildlife, cruise liners, and urban transit.
+          </p>
+
+          <!-- Statistics Row -->
+          <div class="hero-stats-row">
+            <div class="stat-box">
+              <div class="stat-value" id="statTotalMods">84</div>
+              <div class="stat-label">Total Mods</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value" id="statAiMods">4</div>
+              <div class="stat-label">AI & LLM Systems</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value" id="statVehicles">16</div>
+              <div class="stat-label">Vehicles & Air</div>
+            </div>
+            <div class="stat-box">
+              <div class="stat-value" id="statCreatures">22</div>
+              <div class="stat-label">Mobs & Wildlife</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3D Interactive Voxel Diorama -->
+        <div class="diorama-container">
+          <div class="diorama-header">
+            <span class="diorama-title">3D VOXEL DIORAMA ENGINE</span>
+            <div class="diorama-controls">
+              <button class="mini-tool-btn" id="dioramaPresetBtn" title="Change voxel scene">SCENE: ISLAND</button>
+              <button class="mini-tool-btn" id="dioramaSpinBtn" title="Toggle rotation">AUTO-SPIN: ON</button>
+            </div>
+          </div>
+          <canvas id="voxelCanvas"></canvas>
+          <div class="diorama-hint">Drag mouse / touch to rotate diorama</div>
+        </div>
+      </div>
+
+      <!-- Featured AI Mods Highlight Strip -->
+      <div class="featured-strip">
+        <div class="featured-info">
+          <div class="featured-icon">🤖</div>
+          <div class="featured-text">
+            <h3>PIONEERING AUTONOMOUS LLM NPCS IN LUANTI</h3>
+            <p>Featuring local Ollama & OpenRouter driven NPCs with autonomous pathfinding, vision, and procedural building.</p>
+          </div>
+        </div>
+        <div class="featured-tags">
+          <button class="featured-tag-btn" data-mod="llm_npc_core">llm_npc_core</button>
+          <button class="featured-tag-btn" data-mod="llm_bridge_builder">llm_bridge_builder</button>
+          <button class="featured-tag-btn" data-mod="llm_city_builder">llm_city_builder</button>
+          <button class="featured-tag-btn" data-mod="airliner">airliner</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Inventory & Mod Catalog Section -->
+  <main class="inventory-section">
+    <!-- Formspec Creative Tabs -->
+    <div class="formspec-tabs-header" id="categoryTabs">
+      <button class="tab-btn active" data-cat="all">
+        <span>🌐</span> ALL MODS <span class="tab-count" id="countAll">84</span>
+      </button>
+      <button class="tab-btn" data-cat="ai_llm">
+        <span>🤖</span> AI & LLM SYSTEMS <span class="tab-count" id="countAi">4</span>
+      </button>
+      <button class="tab-btn" data-cat="vehicles_transport">
+        <span>✈️</span> VEHICLES & TRANSPORT <span class="tab-count" id="countVehicles">16</span>
+      </button>
+      <button class="tab-btn" data-cat="mobs_creatures">
+        <span>🦖</span> MOBS & CREATURES <span class="tab-count" id="countMobs">22</span>
+      </button>
+      <button class="tab-btn" data-cat="structures_cities">
+        <span>🏛️</span> STRUCTURES & CITIES <span class="tab-count" id="countStructures">11</span>
+      </button>
+      <button class="tab-btn" data-cat="worldgen_maps">
+        <span>🗺️</span> WORLDGEN & MAPS <span class="tab-count" id="countWorldgen">4</span>
+      </button>
+      <button class="tab-btn" data-cat="props_blocks">
+        <span>⚙️</span> ITEMS, PROPS & BLOCKS <span class="tab-count" id="countProps">27</span>
+      </button>
+    </div>
+
+    <!-- Main Content Panel (Formspec Style) -->
+    <div class="formspec-body">
+      <!-- Search and Filter Bar -->
+      <div class="controls-bar">
+        <div class="search-box-wrapper">
+          <span class="search-icon">🔍</span>
+          <input
+            type="text"
+            id="searchInput"
+            class="voxel-input"
+            placeholder="Search mods, dependencies (default, mobs...), keywords..."
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
+        <div class="filter-controls">
+          <div class="filter-group">
+            <label for="sortSelect" class="filter-label">Sort:</label>
+            <select id="sortSelect" class="voxel-select">
+              <option value="name-asc">Name (A-Z)</option>
+              <option value="name-desc">Name (Z-A)</option>
+              <option value="recent">Recently Updated</option>
+              <option value="category">Category</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <span class="filter-label" id="resultsCount">Showing 84 mods</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mod Cards Grid -->
+      <div class="mods-grid" id="modsGrid">
+        <!-- Rendered dynamically via JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Mod Detail Modal (Minetest Formspec Dialog) -->
+  <div class="modal-overlay" id="modModalOverlay" role="dialog" aria-modal="true">
+    <div class="formspec-modal">
+      <div class="formspec-modal-header">
+        <div class="modal-header-left">
+          <span class="modal-category-icon" id="modalCategoryIcon">📦</span>
+          <h3 class="modal-title" id="modalModTitle">Mod Title</h3>
+        </div>
+        <button class="modal-close-btn" id="modalCloseBtn" title="Close dialog">✕</button>
+      </div>
+
+      <div class="formspec-modal-body">
+        <div class="modal-hero-split">
+          <div class="modal-icon-display" id="modalIconDisplay">
+            <span id="modalIconFallback">📦</span>
+          </div>
+          <div class="modal-primary-info">
+            <div class="modal-repo-name" id="modalRepoName">ronrob-lu/repository</div>
+            <p class="modal-desc-full" id="modalFullDescription">Full description of the mod goes here.</p>
+          </div>
+        </div>
+
+        <!-- Quick Install Snippet -->
+        <div class="modal-code-box">
+          <div class="modal-section-title"><span>📥</span> QUICK INSTALL (CLONE TO MINETEST MODS DIRECTORY)</div>
+          <pre id="modalInstallCode">git clone https://github.com/ronrob-lu/modname.git</pre>
+          <button class="voxel-btn accent copy-snippet-btn" id="copyInstallBtn">COPY COMMAND</button>
+        </div>
+
+        <!-- Metadata Grid -->
+        <div class="modal-meta-grid">
+          <div class="meta-item">
+            <span class="meta-item-label">Category</span>
+            <span class="meta-item-value" id="modalCategoryVal">AI & LLM Systems</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-item-label">Language</span>
+            <span class="meta-item-value" id="modalLanguageVal">Lua</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-item-label">Author</span>
+            <span class="meta-item-value" id="modalAuthorVal">ronrob-lu</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-item-label">Last Updated</span>
+            <span class="meta-item-value" id="modalUpdatedVal">2026-09-16</span>
+          </div>
+        </div>
+
+        <!-- Dependencies Section -->
+        <div>
+          <div class="modal-section-title"><span>🧩</span> MOD DEPENDENCIES</div>
+          <div class="mod-deps-list" id="modalDependenciesList">
+            <!-- Badges dynamically inserted -->
+          </div>
+        </div>
+
+        <!-- README excerpt -->
+        <div id="modalReadmeContainer">
+          <div class="modal-section-title"><span>📜</span> MOD OVERVIEW & USAGE</div>
+          <div class="modal-code-box">
+            <p id="modalReadmeText" style="color: #e2ddd5; font-size: 1.15rem; line-height: 1.4;"></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="formspec-modal-footer">
+        <a href="#" target="_blank" rel="noopener noreferrer" class="voxel-btn accent" id="modalGithubBtn">
+          <span>🐙</span> VIEW ON GITHUB
+        </a>
+        <button class="voxel-btn" id="modalCloseFooterBtn">CLOSE</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Voxel Footer -->
+  <footer class="voxel-footer">
+    <div class="grass-rim"></div>
+    <div class="footer-content">
+      <div class="footer-top-row">
+        <div class="footer-brand">
+          <h4>RONROB-LU LUANTI MODS REPOSITORY</h4>
+          <p>Created for Minetest / Luanti engine lovers and developers worldwide.</p>
+        </div>
+        <div class="hud-actions">
+          <a href="#top" class="voxel-btn"><span>⬆️</span> BACK TO TOP</a>
+        </div>
+      </div>
+      <div class="footer-bottom-bar">
+        <span>All projects hosted on <a href="https://github.com/ronrob-lu" target="_blank" rel="noopener noreferrer">github.com/ronrob-lu</a> under open source licenses.</span>
+        <span>Built with pure HTML5, CSS3, Three.js & Web Audio API</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="mods-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
